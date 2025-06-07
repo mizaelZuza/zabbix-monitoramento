@@ -1,0 +1,44 @@
+version 1.0
+
+services:
+  zabbix-server:
+    container_name: zabbix-server
+    image: zabbix/zabbix-server-mysql:latest
+    environment:
+      - DB_SERVER_HOST=zabbix-db
+      - DB_DATABASE=zabbix
+      - DB_USER=zabbix
+      - DB_PASSWORD=zabbix
+  
+  zabbix-db:
+    container_name: zabbix-db
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=zabbix
+      - MYSQL_DATABASE=zabbix
+      - MYSQL_USER=zabbix
+      - MYSQL_PASSWORD=zabbix
+
+  zabbix-web:
+    container_name: zabbix-web
+    image: zabbix/zabbix-web-apache-mysql:latest
+    ports:
+      - "8080:80"
+    environment:
+      - DB_SERVER_HOST=zabbix-server
+      - MYSQL_USER=zabbix
+      - MYSQL_PASSWORD=zabbix
+      - ZBX_SERVER_HOST=zabbix-db
+      - PHP_TZ=America/Sao_Paulo
+    depends_on:
+      - zabbix-server
+
+
+
+
+
+
+
+
+
+
