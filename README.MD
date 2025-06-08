@@ -39,7 +39,9 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
 1.  **Clone o Repositório:** Baixe o código do projeto para o seu ambiente local.
     ```bash
     git clone `git@github.com:mizaelZuza/Esteira-DevOps.git`
-    cd ./PATH --> caminho do diretório onde foi clonado o repositório git.
+    ```
+    ```bash
+    cd <nome_do_diretorio>
     ```
 2.  **Inicie os contêineres:** No diretório do projeto, execute o comando para iniciar todos os serviços em segundo plano:
     ```bash
