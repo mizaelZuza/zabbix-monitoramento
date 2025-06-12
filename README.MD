@@ -6,7 +6,7 @@ Este projeto oferece uma solução robusta e escalável para **monitoramento de 
 
 ---
 
-### 💻 Tecnologias Envolvidas
+### 💻 Tecnologias envolvidas
 
 * **Zabbix (latest):** A plataforma central de monitoramento, utilizar a tag `latest` garante que você utilize os recursos mais recentes.
 * **MySQL (8.0):** Serve como o backbone de banco de dados, escolhido pela sua estabilidade e compatibilidade otimizada com o Zabbix.
@@ -15,7 +15,7 @@ Este projeto oferece uma solução robusta e escalável para **monitoramento de 
 
 ---
 
-### ⚙️ Configurações Essenciais
+### ⚙️ Configurações essenciais
 
 Para colocar o projeto em funcionamento, siga estas etapas simples de configuração:
 
@@ -32,13 +32,13 @@ Para colocar o projeto em funcionamento, siga estas etapas simples de configura�
 
 ---
 
-### 🚀 Iniciando o Projeto
+### 🚀 Iniciando o projeto
 
 Com as configurações prontas, subir sua stack de monitoramento é rápido:
 
 1.  **Clone o Repositório:** Baixe o código do projeto para o seu ambiente local.
     ```bash
-    git clone `git@github.com:mizaelZuza/Esteira-DevOps.git`
+    git clone https://github.com/mizaelZuza/Esteira-DevOps.git
     ```
     ```bash
     cd <nome_do_diretorio>
@@ -58,7 +58,7 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
 
 ---
 
-### 🚀 Parando | Pausando o Projeto
+### 🚀 Parando | Pausando o projeto
 1.  **Parar os contêineres:** No diretório do projeto, execute o comando para parar e remover os containers.
     ```bash
     docker compose down
@@ -73,7 +73,7 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
     ```
 ---
 
-### ℹ️ Observações Importantes
+### ℹ️ Observações importantes
 
 * Este projeto foi arquitetado utilizando **Zabbix com MySQL** como backend de banco de dados para robustez e performance.
 * A estrutura dos contêineres e seus serviços é definida no arquivo **`docker-compose.yml`**, oferecendo uma visão clara da sua stack de monitoramento.
@@ -81,4 +81,41 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
 
 ---
 
-Sinta-se à vontade para explorar e adaptar este ambiente às suas necessidades de monitoramento.
+### ℹ️ Observações complementares
+
+* Na pasta data disponibilizei um arquivo **.yaml** com 3 hosts configurados (Google, CloudFlare e Github).
+* Pode utilizar esse arquivo como ponto de partida para testes de monitoramento. 
+ ---
+ ### Para utilização
+
+ * Importe os hosts dosponibilizados no arquivo **./data/exemplo-hosts.yaml**
+
+1. Clique em **Data collection** e clique em **Hosts**
+![imagem do menu Data Collection](./img/image.png)
+
+2. No canto superior direito, clique em **Import**
+![imagem do botão Import](./img/image2.pngimage.png)
+
+3. Os três hosts estarão configurados
+![hosts configurados](./img/image3.png)
+
+* Crie um dashboard para visualização dos dados coletados.
+
+1. Clique no menú **Dashboards**
+![imagem do menu Dashboards](./img/image4.png)
+
+2. No canto superior direito, clique em **Create Dashboard**
+![imagem do botão create dashbobard](./img/image5.png)
+
+3. Escolha o usuário proprietário **Owner** Dê um nome para o seu Dashboard **name**.
+![imagem de criação do dashbobard](./img/image6.png)
+
+4. Clique numa área vazia do dash
+ - Escolha o tipo de grafico ou elemento que deseja utilizar **Type**. (Como exemplo estou utilizando o tipo gráfico.)
+ - Dê um nome para o componente que está criando **Name**.
+ - Selecione um tempo de atualização **Refresh Interval**.
+ - Selecione o host e o item do host que deseja monitorar **Host Params**
+ - Configure como o elemento representará os dados na tela **Itens Params**
+   - Cor, formato, tamanho, transparencia, etc.
+ - Por fim clique em **Add**
+![imagem de criação do dashbobard](./img/image7.png)
