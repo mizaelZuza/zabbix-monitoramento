@@ -98,7 +98,7 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
 
 2. No canto superior direito, clique em **Import**
 
- ![imagem do botão Import](./img/image2.pngimage.png)
+ ![imagem do botão Import](./img/image2.png)
 
 3. Os três hosts estarão configurados
 
