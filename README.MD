@@ -40,7 +40,7 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
 
 1.  **Clone o Repositório:** Baixe o código do projeto para o seu ambiente local.
     ```bash
-    git clone https://github.com/mizaelZuza/Esteira-DevOps.git
+    git clone [https://github.com/mizaelZuza/Esteira-DevOps.git](https://github.com/mizaelZuza/zabbix-monitoramento.git)
     ```
     ```bash
     cd <nome_do_diretorio>
