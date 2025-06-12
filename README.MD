@@ -85,7 +85,7 @@ No diretório do projeto, utilize os seguintes comandos para gerenciar seus cont
 
 * Este projeto foi arquitetado utilizando **Zabbix com MySQL** como backend de banco de dados para robustez e performance.
 * A estrutura dos contêineres e seus serviços é definida no arquivo **`docker-compose.yml`**, oferecendo uma visão clara da sua stack de monitoramento.
-* O arquivo **`my.cnf`** contém configurações específicas do MySQL para otimizar sua performance com o Zabbix (charset, collation, etc.).
+* O arquivo **`zabbix-mysql.cnf`** contém configurações específicas do MySQL para otimizar sua performance com o Zabbix (charset, collation, etc.).
 
 ---
 
@@ -99,10 +99,16 @@ Para iniciar rapidamente o monitoramento, você pode importar hosts de exemplo e
 * Importe esses hosts no Zabbix:
 
     1.  No menu esquerdo, vá para **Data collection** e clique em **Hosts**.
+
+        ![Imagem do menu Data Collection](./img/image.png)
+        
     2.  No canto superior direito, clique no botão **`Import`**.
+
         ![Imagem do botão Import](./img/image2.png)
+
     3.  Selecione o arquivo `./data/exemplo-hosts.yaml` e siga as instruções.
     4.  Após a importação, os três hosts estarão configurados e prontos para serem monitorados.
+
         ![Hosts Configurados](./img/image3.png)
 
 #### 2. Criar um Dashboard Básico
@@ -110,11 +116,17 @@ Para iniciar rapidamente o monitoramento, você pode importar hosts de exemplo e
 Crie um dashboard para visualizar os dados coletados:
 
 1.  No menu esquerdo, clique em **Dashboards**.
+
     ![Imagem do menu Dashboards](./img/image4.png)
+
 2.  No canto superior direito, clique em **`Create Dashboard`**.
+
     ![Imagem do botão Create Dashboard](./img/image5.png)
+
 3.  Defina o **Proprietário (`Owner`)** do dashboard (geralmente seu próprio usuário) e dê um **Nome (`Name`)** para ele.
+
     ![Imagem de Criação do Dashboard](./img/image6.png)
+
 4.  Após criar o dashboard, clique em uma área vazia para adicionar um widget:
     * Escolha o **Tipo (`Type`)** de widget desejado (por exemplo, `Graph` para gráficos).
     * Dê um **Nome (`Name`)** ao componente.
@@ -122,6 +134,7 @@ Crie um dashboard para visualizar os dados coletados:
     * Em **Parâmetros do Host (`Host Params`)**, selecione o host e o item que deseja monitorar.
     * Em **Parâmetros do Item (`Item Params`)**, configure a representação visual (cor, formato, etc.).
     * Por fim, clique em **`Add`**.
+
     ![Imagem de Configuração de Widget do Dashboard](./img/image7.png)
 
 ---
