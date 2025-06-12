@@ -1,3 +1,5 @@
+![imagem do dash board](./img/dashboard.png)
+
 ---
 
 ## 🚀 Projeto: Monitoramento de Infraestrutura com Zabbix
@@ -15,7 +17,7 @@ Este projeto oferece uma solução robusta e escalável para **monitoramento de 
 
 ---
 
-### ⚙️ Configurações essenciais
+### ⚙️ Configurações essenciaiso menu Data Collection
 
 Para colocar o projeto em funcionamento, siga estas etapas simples de configuração:
 
@@ -68,7 +70,7 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
     docker compose down -v
     ```
 3.  **Pausar os contêineres:** No diretório do projeto, execute o comando para pausar os contêineres.
-    ```bash
+    ```basho menu Data Collection
     docker compose pause
     ```
 ---
@@ -92,29 +94,29 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
 
 1. Clique em **Data collection** e clique em **Hosts**
 
-![imagem do menu Data Collection](./img/image.png)
+ ![imagem do menu Data Collection](./img/image.png)
 
 2. No canto superior direito, clique em **Import**
 
-![imagem do botão Import](./img/image2.pngimage.png)
+ ![imagem do botão Import](./img/image2.pngimage.png)
 
 3. Os três hosts estarão configurados
 
-![hosts configurados](./img/image3.png)
+ ![hosts configurados](./img/image3.png)
 
 * Crie um dashboard para visualização dos dados coletados.
 
 1. Clique no menú **Dashboards**
 
-![imagem do menu Dashboards](./img/image4.png)
+ ![imagem do menu Dashboards](./img/image4.png)
 
 2. No canto superior direito, clique em **Create Dashboard**
 
-![imagem do botão create dashbobard](./img/image5.png)
+ ![imagem do botão create dashbobard](./img/image5.png)
 
 3. Escolha o usuário proprietário **Owner** Dê um nome para o seu Dashboard **name**.
 
-![imagem de criação do dashbobard](./img/image6.png)
+ ![imagem de criação do dashbobard](./img/image6.png)
 
 4. Clique numa área vazia do dash
  - Escolha o tipo de grafico ou elemento que deseja utilizar **Type**. (Como exemplo estou utilizando o tipo gráfico.)
@@ -124,5 +126,5 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
  - Configure como o elemento representará os dados na tela **Itens Params**
    - Cor, formato, tamanho, transparencia, etc.
  - Por fim clique em **Add**
- 
-![imagem de criação do dashbobard](./img/image7.png)
+
+ ![imagem de criação do dashbobard](./img/image7.png)
