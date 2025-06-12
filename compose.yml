@@ -18,7 +18,7 @@ services:
       - zabbix-network
 
   zabbix-server:
-    image: zabbix/zabbix-server-mysql:latest
+    image: zabbix/zabbix-server-mysql:alpine-7.2-latest
     container_name: "zabbix-server"
     restart: unless-stopped
     ports:
@@ -34,7 +34,7 @@ services:
       - zabbix-network
 
   zabbix-web:
-    image: zabbix/zabbix-web-nginx-mysql:latest
+    image: zabbix/zabbix-web-nginx-mysql:alpine-7.2-latest
     container_name: "zabbix-web"
     restart: unless-stopped
     ports:
