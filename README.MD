@@ -91,23 +91,29 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
  * Importe os hosts dosponibilizados no arquivo **./data/exemplo-hosts.yaml**
 
 1. Clique em **Data collection** e clique em **Hosts**
+
 ![imagem do menu Data Collection](./img/image.png)
 
 2. No canto superior direito, clique em **Import**
+
 ![imagem do botão Import](./img/image2.pngimage.png)
 
 3. Os três hosts estarão configurados
+
 ![hosts configurados](./img/image3.png)
 
 * Crie um dashboard para visualização dos dados coletados.
 
 1. Clique no menú **Dashboards**
+
 ![imagem do menu Dashboards](./img/image4.png)
 
 2. No canto superior direito, clique em **Create Dashboard**
+
 ![imagem do botão create dashbobard](./img/image5.png)
 
 3. Escolha o usuário proprietário **Owner** Dê um nome para o seu Dashboard **name**.
+
 ![imagem de criação do dashbobard](./img/image6.png)
 
 4. Clique numa área vazia do dash
@@ -118,4 +124,5 @@ Com as configurações prontas, subir sua stack de monitoramento é rápido:
  - Configure como o elemento representará os dados na tela **Itens Params**
    - Cor, formato, tamanho, transparencia, etc.
  - Por fim clique em **Add**
+ 
 ![imagem de criação do dashbobard](./img/image7.png)
