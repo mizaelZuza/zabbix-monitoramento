@@ -33,7 +33,7 @@ Para colocar seu monitoramento em funcionamento, siga estas etapas:
 
 1.  **Clone o Repositório:** Baixe o código do projeto para o seu ambiente local.
     ```bash
-    git clone (https://github.com/mizaelZuza/zabbix-monitoramento.git)
+    git clone https://github.com/mizaelZuza/zabbix-monitoramento.git
     cd zabbix-monitoramento
     ```
 
