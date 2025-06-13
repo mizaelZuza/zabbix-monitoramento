@@ -17,44 +17,55 @@ Este projeto oferece uma solução robusta e escalável para **monitoramento de 
 
 ---
 
+---
+
 ### ⚙️ Configurações Essenciais
 
 Para colocar o projeto em funcionamento, siga estas etapas simples de configuração:
 
 1.  **Instale Docker e Docker Compose:** Certifique-se de que ambos estejam devidamente instalados no seu sistema operacional.
-2.  **Crie o arquivo `.env`:** Este arquivo, localizado no diretório raiz do projeto, abrigará suas variáveis de ambiente sensíveis. Adicione as seguintes variáveis:
-    * `MYSQL_DATABASE`
-    * `MYSQL_USER`
-    * `MYSQL_PASSWORD`
-    * `MYSQL_ROOT_PASSWORD`
-    * `ZABBIX_SERVER_PORT_EXTERNAL` (Ex: `10051`)
-    * `ZABBIX_WEB_HTTP_PORT_EXTERNAL` (Ex: `8080`)
-    * `ZABBIX_WEB_HTTPS_PORT_EXTERNAL` (Ex: `8443` - Utilize se você habilitar HTTPS no Nginx do Zabbix Web)
-3.  **Proteja suas Credenciais:** Adicione `.env` ao seu arquivo `.gitignore` para prevenir que suas credenciais sejam acidentalmente versionadas em repositórios.
 
 ---
 
-### 🚀 Iniciando o Projeto
+## 🚀 Iniciando o Projeto
 
-Com as configurações prontas, subir sua stack de monitoramento é rápido:
+Para colocar seu monitoramento em funcionamento, siga estas etapas:
 
 1.  **Clone o Repositório:** Baixe o código do projeto para o seu ambiente local.
     ```bash
     git clone [https://github.com/mizaelZuza/zabbix-monitoramento.git](https://github.com/mizaelZuza/zabbix-monitoramento.git)
-    cd zabbix-monitoramento # Ou o nome do diretório clonado
+    cd zabbix-monitoramento
     ```
-2.  **Inicie os Contêineres:** No diretório do projeto, execute o comando para iniciar todos os serviços em segundo plano:
+
+2.  **Crie e Configure o Arquivo `.env`:** Este arquivo, localizado no diretório raiz do projeto (o mesmo para onde você navegou no passo anterior, `zabbix-monitoramento`), abrigará suas **variáveis de ambiente sensíveis**. **É crucial que este arquivo seja criado antes de iniciar os contêineres.**
+
+    Crie um arquivo chamado `.env` e adicione as seguintes variáveis, substituindo os valores entre parênteses pelos seus próprios:
+    ```
+    MYSQL_DATABASE=(nome do database)
+    MYSQL_USER=(nome do usuário)
+    MYSQL_PASSWORD=(senha do usuario do banco)
+    MYSQL_ROOT_PASSWORD=(senha root do banco)
+    ZABBIX_SERVER_PORT_EXTERNAL=(Ex: 10051)
+    ZABBIX_WEB_HTTP_PORT_EXTERNAL=(Ex: 8080)
+    ZABBIX_WEB_HTTPS_PORT_EXTERNAL=(Ex: 8443 - Utilize se você habilitar HTTPS no Nginx do Zabbix Web)
+    ```
+    **Proteja suas Credenciais:** Adicione `.env` ao seu arquivo `.gitignore` para prevenir que suas credenciais sejam acidentalmente versionadas em repositórios públicos.
+
+3.  **Inicie os Contêineres:** No diretório do projeto (`zabbix-monitoramento`), execute o comando para iniciar todos os serviços em segundo plano:
     ```bash
     docker compose up -d
     ```
-3.  **Acesse o Zabbix:** Uma vez que os contêineres estejam em execução, você pode acessar a interface web do Zabbix.
-    * **HTTP:** `http://localhost:${ZABBIX_WEB_HTTP_PORT_EXTERNAL}` (por padrão, `http://localhost:8080`)
-    * **HTTPS:** `https://localhost:${ZABBIX_WEB_HTTPS_PORT_EXTERNAL}` (se configurado, por padrão `https://localhost:8443`)
-4.  **Faça Login:** Utilize as credenciais padrão para seu primeiro acesso:
+
+4.  **Acesse o Zabbix:** Uma vez que os contêineres estejam em execução, você pode acessar a interface web do Zabbix utilizando a porta que você definiu em `ZABBIX_WEB_HTTP_PORT_EXTERNAL` (por padrão, `8080`) ou `ZABBIX_WEB_HTTPS_PORT_EXTERNAL` (se configurado, por padrão `8443`):
+    * **HTTP:** `http://localhost:${ZABBIX_WEB_HTTP_PORT_EXTERNAL}` (ex: `http://localhost:8080`)
+    * **HTTPS:** `https://localhost:${ZABBIX_WEB_HTTPS_PORT_EXTERNAL}` (ex: `https://localhost:8443`)
+
+5.  **Faça Login:** Utilize as credenciais padrão para seu primeiro acesso:
     * **Usuário:** `Admin`
     * **Senha:** `zabbix`
     * **Recomendação:** Altere a senha padrão imediatamente após o primeiro login para garantir a segurança.
-5.  **Configure seu Monitoramento:** O Zabbix estará pronto para você adicionar hosts, templates e configurar suas necessidades específicas de monitoramento.
+
+6.  **Configure seu Monitoramento:** O Zabbix estará pronto para você adicionar hosts, templates e configurar suas necessidades específicas de monitoramento.
 
 ---
 
