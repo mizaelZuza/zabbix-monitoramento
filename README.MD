@@ -109,18 +109,18 @@ Para iniciar rapidamente o monitoramento, você pode importar hosts de exemplo e
 * Na pasta `data`, você encontrará um arquivo **`exemplo-hosts.yaml`** com configurações para monitorar o Google, CloudFlare e GitHub.
 * Importe esses hosts no Zabbix:
 
-1.  No menu esquerdo, vá para **Data collection** e clique em **Hosts**.
+    1.  No menu esquerdo, vá para **Data collection** e clique em **Hosts**.
 
-    ![Imagem do menu Data Collection](./img/image.png)
-        
-2.  No canto superior direito, clique no botão **`Import`**.
+        ![Imagem do menu Data Collection](./img/image.png)
+            
+    2.  No canto superior direito, clique no botão **`Import`**.
 
-    ![Imagem do botão Import](./img/image2.png)
+        ![Imagem do botão Import](./img/image2.png)
 
-3.  Selecione o arquivo `./data/exemplo-hosts.yaml` e siga as instruções.
-4.  Após a importação, os três hosts estarão configurados e prontos para serem monitorados.
+    3.  Selecione o arquivo `./data/exemplo-hosts.yaml` e siga as instruções.
+    4.  Após a importação, os três hosts estarão configurados e prontos para serem monitorados.
 
-    ![Hosts Configurados](./img/image3.png)
+        ![Hosts Configurados](./img/image3.png)
 
 #### 2. Criar um Dashboard Básico
 
