@@ -134,7 +134,7 @@ Crie um dashboard para visualizar os dados coletados:
 
     ![Imagem do botão Create Dashboard](./img/image5.png)
 
-3.  Defina o **Proprietário (`Owner`)** do dashboard (geralmente seu próprio usuário) e dê um **Nome (`Name`)** para ele.
+3.  Defina o **Proprietário (`Owner`)** do dashboard (geralmente seu próprio usuário) e dê um **Nome (`Name`)** para ele. Por fim clique em **Aply**.
 
     ![Imagem de Criação do Dashboard](./img/image6.png)
 
