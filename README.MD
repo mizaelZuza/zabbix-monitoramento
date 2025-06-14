@@ -24,6 +24,8 @@ Este projeto oferece uma solução robusta e escalável para **monitoramento de 
 Para colocar o projeto em funcionamento, siga estas etapas simples de configuração:
 
 1.  **Instale Docker e Docker Compose:** Certifique-se de que ambos estejam devidamente instalados no seu sistema operacional.
+2.  **Documentação Docker e Docker Compose:** Na documentação oficial consta o passo a passo para instalação do Docker e Docker Compose nos principais sistemas operacionais. (https://docs.docker.com/desktop/)
+
 
 ---
 
