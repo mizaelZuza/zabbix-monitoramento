@@ -47,9 +47,9 @@ Para colocar seu monitoramento em funcionamento, siga estas etapas:
     MYSQL_USER=(nome do usuário)
     MYSQL_PASSWORD=(senha do usuario do banco)
     MYSQL_ROOT_PASSWORD=(senha root do banco)
-    ZABBIX_SERVER_PORT_EXTERNAL=(Ex: 10051)
-    ZABBIX_WEB_HTTP_PORT_EXTERNAL=(Ex: 8080)
-    ZABBIX_WEB_HTTPS_PORT_EXTERNAL=(Ex: 8443 - Utilize se você habilitar HTTPS no Nginx do Zabbix Web)
+    ZABBIX_SERVER_PORT=(Ex: 10051)
+    ZABBIX_WEB_HTTP_PORT=(Ex: 8080)
+    ZABBIX_WEB_HTTPS_PORT=(Ex: 8443 - Utilize se você habilitar HTTPS no Nginx do Zabbix Web)
     ```
     **Proteja suas credenciais:** Adicione `.env` ao seu arquivo `.gitignore` para prevenir que suas credenciais sejam acidentalmente versionadas em repositórios públicos.
 
@@ -58,9 +58,9 @@ Para colocar seu monitoramento em funcionamento, siga estas etapas:
     docker compose up -d
     ```
 
-4.  **Acesse o Zabbix:** Uma vez que os contêineres estejam em execução, você pode acessar a interface web do Zabbix utilizando a porta que você definiu em `ZABBIX_WEB_HTTP_PORT_EXTERNAL` (por padrão, `8080`) ou `ZABBIX_WEB_HTTPS_PORT_EXTERNAL` (se configurado, por padrão `8443`):
-    * **HTTP:** `http://localhost:${ZABBIX_WEB_HTTP_PORT_EXTERNAL}` (ex: `http://localhost:8080`)
-    * **HTTPS:** `https://localhost:${ZABBIX_WEB_HTTPS_PORT_EXTERNAL}` (ex: `https://localhost:8443`)
+4.  **Acesse o Zabbix:** Uma vez que os contêineres estejam em execução, você pode acessar a interface web do Zabbix utilizando a porta que você definiu em `ZABBIX_WEB_HTTP_PORT` (por padrão, `8080`) ou `ZABBIX_WEB_HTTPS_PORT` (se configurado, por padrão `8443`):
+    * **HTTP:** `http://localhost:${ZABBIX_WEB_HTTP_PORT}` (ex: `http://localhost:8080`)
+    * **HTTPS:** `https://localhost:${ZABBIX_WEB_HTTPS_PORT}` (ex: `https://localhost:8443`)
 
 5.  **Faça login:** Utilize as credenciais padrão para seu primeiro acesso:
     * **Usuário:** `Admin`
