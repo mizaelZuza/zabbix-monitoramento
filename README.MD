@@ -16,7 +16,7 @@ O projeto é organizado em duas branches principais, cada uma destinada a um tip
 *   **`infra-local`**: Contém a configuração para implantação local, ideal para desenvolvimento, testes e aprendizado. No `README.md` desta branch `infra-local` temos exemplos de cadastro e monitoramento por icmp de 3 hosts Google, Github e Cloudflare.
 ---
 
-*   **`oracle-cloud`**: Contém a configuração para implantação na Oracle Cloud (OCI). No `README.md` desta branch `oracle-cloud` temos exemplos de cadastro e monitoramento por icmp de 3 hosts Google, Github e Cloudflare, além de monitoramento por zabbix agent de um host Linux, o host que hospera os containeres Docker.
+*   **`oracle-cloud`**: Contém a configuração para implantação na Oracle Cloud (OCI). No `README.md` desta branch `oracle-cloud` temos exemplos de cadastro e monitoramento por icmp de 3 hosts Google, Github e Cloudflare, além de monitoramento por zabbix agent de um host Linux, o host que hospeda os containeres Docker.
 
 ---
 
