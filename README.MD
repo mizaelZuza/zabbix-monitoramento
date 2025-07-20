@@ -62,7 +62,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
     ![botão de criação](./img/vcn-image8.png)
     * Clique em **Criar Sub-rede**.
     ![botão de criação](./img/vcn-image9.png)
-    * **Nome:** Dê um nome significativo (ex: `zabbix-subnet`).
+    * **Nome:** Dê um nome significativo (ex: `zabbix-vcn-subnet`).
     * **Blocos CIDR IPv4:** Mantenha o padrão `10.0.0.0/24` ou defina um de sua preferência.
     * Clique em **Create Subnet**.
     ![botão de criação](./img/vcn-image10.png)
@@ -93,33 +93,50 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
         ![botão de criação](./img/vm-image4.png)
         * Selecione **Canonical Ubuntu** e a versão desejada (ex: `24.04 LTS`).
         ![botão de criação](./img/vm-image5.png)
-        * **Shape:** Clique em **Change Shape** e escolha uma forma adequada (ex: `VM.Standard.E2.1.Micro` para contas *Always Free*).
-    * **Networking:**
-        * **Virtual cloud network:** Selecione a VCN criada anteriormente (`zabbix-vcn`).
-        * **Subnet:** Escolha a sub-rede pública.
-        * **Public IP address:** Marque **Assign a public IPv4 address**.
-    * **Add SSH keys:** Selecione **Paste public keys** e cole o conteúdo da sua chave pública (`~/.ssh/zabbix_key.pub`).
-    * Clique em **Create**.
-    * Aguarde a instância ficar com o status "Running" e anote o **Public IP address**.
+        * **Forma:** Clique em **Alterar Forma** e escolha uma forma adequada (ex: `VM.Standard.E2.2`).
+        ![botão de criação](./img/vm-image6.png)
+        ![botão de criação](./img/vm-image7.png)
+    * **Rede:**
+        * **Rede virtual na nuvem:** Selecione a VCN criada anteriormente (`zabbix-vcn`).
+        ![botão de criação](./img/vm-image8.png)
+        * **Sub-rede:** Escolha a sub-rede pública.
+        ![botão de criação](./img/vm-image9.png)
+        * **Endereço de IP público:** Marque **Marque: designar endereço IPv4 público automaticamente**.
+        ![botão de criação](./img/vm-image10.png)
+    * **Adicionar chaves SSH:** Selecione **Colar chave pública** e cole o conteúdo da sua chave pública (`~/.ssh/zabbix_key.pub`).
+    ![botão de criação](./img/vm-image11.png)
+    * **Armazenamento:** Para o projeto não há necessidade de alterar o armazenamento da VM o padrão `50` GB será suficiente.
+    ![botão de criação](./img/vm-image12.png)
+    * Clique em **Próximo** e depois em **Criar**.
+    * Aguarde a instância ficar com o status "Executando" e anote o **Endereço de IP público**.
 
     #### 2.4. Configurar Regras de Segurança (Firewall da OCI)
     Abra as portas necessárias para a comunicação.
 
-    * Navegue até os detalhes da sua instância e clique no link da **Public Subnet**.
-    * Clique na **Default Security List**.
-    * Clique em **Add Ingress Rules** e adicione as seguintes regras de entrada:
+    * Navegue até os detalhes da sua instância e clique em **Rede**, depois em **Sub-rede** clique no nome da sua sub-rede (`zabbix-vcn-subnet`).
+    ![botão de criação](./img/fw-image1.png)
+    ![botão de criação](./img/fw-image2.png)
+    * Clique em **Segurança**;
+    ![botão de criação](./img/fw-image3.png)
+
+    * Clique na **Default Security List** e depois em **Regras de segurança**.
+    ![botão de criação](./img/fw-image4.png)
+    ![botão de criação](./img/fw-image5.png)
+    * Clique em **Adicionar regras de segurança** e adicione as seguintes regras de entrada:
+    ![botão de criação](./img/fw-image6.png)
         * **Regra para SSH (Porta 22):**
-            * **Source CIDR:** `0.0.0.0/0`
-            * **IP Protocol:** `TCP`
-            * **Destination Port Range:** `22`
+            * **CIDR de origem:** `0.0.0.0/0`
+            * **Protocolo IP:** `TCP`
+            * **Intervalo de portas de destino:** `22`
         * **Regra para Zabbix Agent (Porta 10050):**
-            * **Source CIDR:** `0.0.0.0/0` (ou o IP do seu Zabbix Server para mais segurança).
-            * **IP Protocol:** `TCP`
-            * **Destination Port Range:** `10050`
+            * **CIDR de origem:** `0.0.0.0/0` (ou o IP do seu Zabbix Server para mais segurança).
+            * **Protocolo IP:** `TCP`
+            * **Intervalo de portas de destino:** `10050`
         * **Regras para Zabbix Web (Portas 8080/8443):**
-            * **Source CIDR:** `0.0.0.0/0`
-            * **IP Protocol:** `TCP`
-            * **Destination Port Range:** `8080` (HTTP) e/ou `8443` (HTTPS).
+            * **CIDR de origem:** `0.0.0.0/0`
+            * **Protocolo IP:** `TCP`
+            * **Intervalo de portas de destino:** `8080` (HTTP) e/ou `8443` (HTTPS).
+            ![botão de criação](./img/fw-image7.png)
 
     #### 2.5. Conectar-se à VM via SSH
 
@@ -127,6 +144,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
         ```bash
         chmod 400 ~/.ssh/zabbix_key
         ```
+        * **Obs:** O arquivo `~/.ssh/zabbix_key` contém a chave privada o comando acima altera as permissões para 400, ou seja, apenas o proprietário da chave tem permissoes de leitura.
     * Conecte-se usando o IP público da sua VM:
         ```bash
         ssh -i ~/.ssh/zabbix_key ubuntu@<SEU_IP_PUBLICO_DA_VM>
@@ -139,15 +157,20 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
     * Acesse sua VM via SSH.
     * Baixe e instale o pacote de repositório do Zabbix. Ajuste a URL para a versão compatível com seu Zabbix Server.
         ```bash
-        wget [https://repo.zabbix.com/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1+ubuntu22.04_all.deb](https://repo.zabbix.com/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1+ubuntu22.04_all.deb)
-        sudo dpkg -i zabbix-release_6.4-1+ubuntu22.04_all.deb
+        wget https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.2+ubuntu24.04_all.deb
+
+        dpkg -i zabbix-release_latest_7.2+ubuntu24.04_all.deb
         ```
     * Atualize o cache e instale o agente:
         ```bash
         sudo apt update
         sudo apt install zabbix-agent
         ```
-
+    * Verifique se o serviço está ativo:
+        ```bash
+        sudo systemctl status zabbix-agent
+        ```
+        ![botão de criação](./img/status-zabbix-agent.png)
     #### 3.2. Configurar o Zabbix Agent
 
     * Edite o arquivo de configuração:
@@ -156,27 +179,42 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
         ```
     * Modifique as seguintes linhas:
         * `Server`: IP do seu Zabbix Server. Se o server estiver na mesma VM, pode usar o IP público dela.
-        * `ServerActive`: IP e porta do seu Zabbix Server para checagens ativas (ex: `168.138.151.178:10051`).
-        * `Hostname`: Nome único para o host. **Deve ser idêntico** ao cadastrado no Zabbix Frontend.
-    * Salve o arquivo, reinicie e verifique o status do serviço:
+        * `ServerActive`: IP e porta do seu Zabbix Server para checagens ativas (ex: `<IP publico da VM>:10051`).
+        * `Hostname`: Nome único para o host. **Deve ser idêntico** ao que será cadastrado no Zabbix Frontend.
+        * **Obs:** O copie o hostname para o campo do Zabbix Frontend.
+    * Salve o arquivo (ctrl + o, Enter, ctrl + x), reinicie e verifique o status do serviço:
         ```bash
         sudo systemctl restart zabbix-agent
         sudo systemctl status zabbix-agent
         ```
 
-    #### 3.3. Configurar o Firewall Interno do Host (iptables)
+    #### 3.3. Configurar o firewall interno do host (iptables)
+    * **Obs:** Primeiro adicione o host ao zabbix frontend e analise se os dados estão sendo enviados, caso nao, verifique se existe alguma regra de firewall bloqueando a porta 10050.
+    Na instancia padrão do Ubuntu server da Oracle Cloud Infrastructure (OCI), precisei alterar o firewall para permitir a porta 10050.
+    * Rode o comando para analizar a tabela de Input do Firewall: 
+        ```bash
+        sudo iptables -L -n
+        ```
 
     * Adicione uma regra para permitir conexões na porta 10050:
         ```bash
         sudo iptables -I INPUT 5 -p tcp --dport 10050 -j ACCEPT
         ```
+    * **Obs:** O `5` indica que a regra deve ser inserida na quinta posição da cadeia de regras.
+
+    * Verifique se a regra foi adicionada corretamente:
+        ```bash
+        sudo iptables -L -n
+        ```
+        ![botão de criação](./img/fw-image8.png)
+    
     * Instale o `netfilter-persistent` para salvar a regra após reinicializações:
         ```bash
         sudo apt install netfilter-persistent
         sudo netfilter-persistent save
         ```
 
-    #### 3.4. Adicionar o Host no Zabbix Frontend
+    #### 3.4. Adicionar o host no Zabbix frontend
 
     * Acesse sua interface web do Zabbix.
     * Vá para **Configuration > Hosts** e clique em **Create host**.
