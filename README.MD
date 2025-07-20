@@ -13,8 +13,10 @@ O projeto oferece uma base sólida para aprendizado e experimentação com o Zab
 
 O projeto é organizado em duas branches principais, cada uma destinada a um tipo específico de implantação:
 
-*   **`infra-local`**: Contém a configuração para implantação local, ideal para desenvolvimento, testes e aprendizado.
-*   **`oracle-cloud`**: Contém a configuração para implantação na Oracle Cloud (OCI).
+*   **`infra-local`**: Contém a configuração para implantação local, ideal para desenvolvimento, testes e aprendizado. No `README.md` desta branch `infra-local` temos exemplos de cadastro e monitoramento por icmp de 3 hosts Google, Github e Cloudflare.
+---
+
+*   **`oracle-cloud`**: Contém a configuração para implantação na Oracle Cloud (OCI). No `README.md` desta branch `oracle-cloud` temos exemplos de cadastro e monitoramento por icmp de 3 hosts Google, Github e Cloudflare, além de monitoramento por zabbix agent de um host Linux, o host que hospera os containeres Docker.
 
 ---
 
@@ -49,7 +51,7 @@ Se você pretende implantar o ambiente em um ambiente de nuvem, siga estas etapa
 
 *   Conta Oracle Cloud Infrastructure (OCI) ativa com acesso à criação de recursos.
 *   Conhecimento básico de rede e segurança na OCI.
-*   VM Linux com Docker instalado e em execução.
+*   VM Linux na OCI com Docker e Docker composeinstalado e em execução.
 
 ---
 
