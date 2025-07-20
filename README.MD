@@ -1,4 +1,4 @@
-# Guia de Configuração do Zabbix na Oracle Cloud Infrastructure (OCI) com Docker e Docker Compose.
+# Guia de configuração do zabbix na Oracle cloud infrastructure (OCI) com docker e docker compose.
 
 ![Dashboard](./img/dashboard.png)
 
@@ -35,6 +35,13 @@ O objetivo é fornecer uma solução robusta e automatizada para o monitoramento
 * O arquivo `zabbix-mysql.cnf` contém otimizações para o MySQL;
 * O arquivo `data/hosts.yaml` contém exemplos para monitorar Google, CloudFlare e GitHub;
 * Estamos utilizando uma VM Ubuntu na Oracle Cloud Infrastructure (OCI) para implantar o ambiente.
+
+## 🔗 Links Úteis
+
+*   [Zabbix](https://www.zabbix.com/)
+*   [Docker](https://docs.docker.com/)
+*   [Oracle Cloud Infrastructure (OCI)](https://cloud.oracle.com/)
+*   [Iptables](https://help.ubuntu.com/community/IptablesHowTo?action=show&redirect=Iptables)
 
 ---
 
@@ -98,7 +105,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
 
     ![Tela com formulário de criação](./img/vcn-image10.png)
 
-    #### 2.3. Gerar Chaves SSH
+    #### 2.3. Gerar chaves SSH
     As chaves SSH são essenciais para a conexão segura com a VM.
 
     * Abra um terminal (Linux/macOS) ou Git Bash/WSL (Windows);
@@ -112,7 +119,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
         cat ~/.ssh/zabbix_key.pub
         ```
 
-    #### 2.3. Lançar a Instância de Computação (VM)
+    #### 2.3. Criar a instância de computação (VM)
 
     * No menu da OCI, vá para **Computação > Instâncias** e clique em **Ciar instância**;
 
@@ -161,7 +168,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
     * Clique em **Próximo** e depois em **Criar**;
     * Aguarde a instância ficar com o status "Executando" e anote o **Endereço de IP público**.
 
-    #### 2.4. Configurar Regras de Segurança (Firewall da OCI)
+    #### 2.4. Configurar regras de segurança (Firewall da OCI)
     Abra as portas necessárias para a comunicação.
 
     * Navegue até os detalhes da sua instância e clique em **Rede**, depois em **Sub-rede** clique no nome da sua sub-rede (`zabbix-vcn-subnet`);
@@ -209,9 +216,9 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
         ssh -i ~/.ssh/zabbix_key ubuntu@<SEU_IP_PUBLICO_DA_VM>
         ```
 
-3.  **Instalação e Configuração do Zabbix Agent no Host Linux**
+3.  **Instalação e configuração do zabbix agent no host Linux**
 
-    #### 3.1. Instalar o Zabbix Agent
+    #### 3.1. Instalar o zabbix agent
 
     * Acesse sua VM via SSH;
 
@@ -234,7 +241,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
         ```
         ![exemplo de status](./img/status-zabbix-agent.png)
 
-    #### 3.2. Configurar o Zabbix Agent
+    #### 3.2. Configurar o zabbix agent
 
     * Edite o arquivo de configuração:
         ```bash
@@ -278,7 +285,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
         sudo apt install netfilter-persistent
         sudo netfilter-persistent save
         ```
-4.  **Instalação e Configuração do Docker e Docker Compose**
+4.  **Instalação e configuração do docker e docker compose**
 
     ### 4.1.Instale docker e docker compose:
     ### 4.2. Documentação docker e docker compose: 
