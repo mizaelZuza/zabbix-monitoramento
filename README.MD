@@ -5,6 +5,7 @@
 ## Projeto: Monitoramento de infraestrutura com Zabbix
 
 Este projeto oferece uma solução robusta e escalável para **monitoramento de infraestrutura**, utilizando o poder do Zabbix, um software de código aberto líder em monitoramento de rede e sistemas. Desenvolvido para flexibilidade, ele se adapta facilmente a diversos ambientes, garantindo que você tenha visibilidade total sobre a saúde e performance dos seus sistemas.
+O projeto visa a criação de um ambiente completo rodando localmente via docker e docker compose para facilitar a execução, configuração e gerenciamento dos serviços do Zabbix.
 
 ---
 
@@ -47,9 +48,9 @@ Para colocar seu monitoramento em funcionamento, siga estas etapas:
     MYSQL_USER=(nome do usuário)
     MYSQL_PASSWORD=(senha do usuario do banco)
     MYSQL_ROOT_PASSWORD=(senha root do banco)
-    ZABBIX_SERVER_PORT=(Ex: 10051)
-    ZABBIX_WEB_HTTP_PORT=(Ex: 8080)
-    ZABBIX_WEB_HTTPS_PORT=(Ex: 8443 - Utilize se você habilitar HTTPS no Nginx do Zabbix Web)
+    ZABBIX_SERVER_PORT=10051
+    ZABBIX_WEB_HTTP_PORT=8080
+    ZABBIX_WEB_HTTPS_PORT=8443
     ```
     **Proteja suas credenciais:** Adicione `.env` ao seu arquivo `.gitignore` para prevenir que suas credenciais sejam acidentalmente versionadas em repositórios públicos.
 
