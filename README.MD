@@ -18,8 +18,6 @@ O projeto visa a criação de um ambiente completo rodando localmente via docker
 
 ---
 
----
-
 ### ⚙️ Configurações essenciais
 
 Para colocar o projeto em funcionamento, siga estas etapas simples de configuração:
