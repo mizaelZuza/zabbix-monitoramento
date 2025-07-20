@@ -6,7 +6,9 @@
 
 ## Projeto: Monitoramento de infraestrutura com Zabbix
 
-Este projeto oferece uma solução robusta e escalável para **monitoramento de infraestrutura**, utilizando o poder do Zabbix, um software de código aberto líder em monitoramento de rede e sistemas. Desenvolvido para flexibilidade, ele se adapta facilmente a diversos ambientes, garantindo que você tenha visibilidade total sobre a saúde e performance dos seus sistemas.
+Este projeto demonstra a configuração de um ambiente de monitoramento com Zabbix em uma maquina virtual na Oracle Cloud Infrastructure (OCI). 
+
+O objetivo é fornecer uma solução robusta e automatizada para o monitoramento de infraestrutura, facilitando a adoção de práticas DevOps. Utilizando Docker e Docker Compose, podemos criar um ambiente isolado e reproduzível, garantindo a consistência da configuração e facilitando a implantação em diferentes ambientes. O monitoramento é fundamental para garantir a disponibilidade, desempenho e segurança dos seus servidores, permitindo que você tome decisões informadas sobre a sua infraestrutura.
 
 ---
 
@@ -25,11 +27,23 @@ Este projeto oferece uma solução robusta e escalável para **monitoramento de 
 
 ---
 
+### 📝 Notas do projeto
+
+* Este projeto utiliza **Zabbix com MySQL** para garantir robustez e performance;
+* A estrutura dos serviços está definida no arquivo `docker-compose.yml`;
+* É utilizado volumes para armazenar os dados e configurações do Zabbix;
+* O arquivo `zabbix-mysql.cnf` contém otimizações para o MySQL;
+* O arquivo `data/hosts.yaml` contém exemplos para monitorar Google, CloudFlare e GitHub;
+* Estamos utilizando uma VM Ubuntu na Oracle Cloud Infrastructure (OCI) para implantar o ambiente.
+
+---
+
 ### ⚙️ Configurações essenciais
 
 Para colocar o projeto em funcionamento, siga estas etapas de configuração:
 
 1.  **Crie uma conta na Oracle Cloud | Faça login na sua conta Oracle Cloud:**[Oracle Cloud](https://www.oracle.com/br/cloud/).
+
     ![Página inicial da Oracle Cloud Brasil](./img/pagina_inicial_oracle.png)
 
 2.  **Criação da VM Ubuntu na Oracle Cloud Infrastructure (OCI)**
@@ -38,17 +52,28 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
     Uma VCN é sua rede privada na OCI.
 
     * Acesse o console da OCI e navegue para **Rede > Redes virtuais na nuvem**;
-    * Selecione o **Compartimento** (compartimento) desejado.
+    * Selecione o **Compartimento** (compartimento) desejado;
+
     ![Filtro de compartimento](./img/vcn-image1.png)
+
     * Clique em **Criar VCN**;
+
     ![botão de criação](./img/vcn-image2.png)
+
     * **Nome:** Dê um nome significativo (ex: `zabbix-vcn`);
+
     ![Tela com formulário de criação](./img/vcn-image3.png)
+
     * **Blocos CIDR IPv4:** Mantenha o padrão `10.0.0.0/24` ou defina um de sua preferência;
+
     ![Tela com formulário de criação](./img/vcn-image4.png)
+
     * Marque a opção **Usar nomes de host de DNS nesta VCN**;
+
     ![Tela com formulário de criação](./img/vcn-image5.png)
+
     * Clique em **Criar VCN**.
+
     ![botão de criação](./img/vcn-image6.png)
 
     #### 2.2. Criar uma subnet
@@ -56,14 +81,21 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
 
     * Acesse o console da OCI e navegue para **Rede > Redes virtuais na nuvem**;
     * Selecione a VCN criada anteriormente (`zabbix-vcn`);
+
     ![botão de criação](./img/vcn-image7.png)
+
     * Clique em **Sub-redes**;
+
     ![botão de criação](./img/vcn-image8.png)
+
     * Clique em **Criar Sub-rede**;
+
     ![botão de criação](./img/vcn-image9.png)
+
     * **Nome:** Dê um nome significativo (ex: `zabbix-vcn-subnet`);
     * **Blocos CIDR IPv4:** Mantenha o padrão `10.0.0.0/24` ou defina um de sua preferência;
     * Clique em **Criar Sub-rede**.
+
     ![Tela com formulário de criação](./img/vcn-image10.png)
 
     #### 2.3. Gerar Chaves SSH
@@ -83,29 +115,49 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
     #### 2.3. Lançar a Instância de Computação (VM)
 
     * No menu da OCI, vá para **Computação > Instâncias** e clique em **Ciar instância**;
+
     ![Tela com formulário de criação](./img/vm-image1.png)
     ![botão de criação](./img/vm-image2.png)
+
     * **Nome:** Dê um nome à sua VM (ex: `zabbix-vm`);
+
     ![Tela com formulário de criação](./img/vm-image3.png)
+
     * **Imagem e forma:**
         * **Imagem:** Clique em **Alterar Imagem**;
+
         ![botão de alteração](./img/vm-image4.png)
+
         * Selecione **Canonical Ubuntu** e a versão desejada (ex: `24.04 LTS`);
+
         ![Tela com formulário de criação](./img/vm-image5.png)
+
         * **Forma:** Clique em **Alterar Forma** e escolha uma forma adequada (ex: `VM.Standard.E2.2`).
+
         ![botão de alteração](./img/vm-image6.png)
         ![botão de alteração](./img/vm-image7.png)
+
     * **Rede:**
         * **Rede virtual na nuvem:** Selecione a VCN criada anteriormente (`zabbix-vcn`);
+
         ![Tela com formulário de criação](./img/vm-image8.png)
+
         * **Sub-rede:** Escolha a sub-rede pública;
+
         ![Tela com formulário de criação](./img/vm-image9.png)
+
         * **Endereço de IP público:** Marque **Marque: designar endereço IPv4 público automaticamente**;
+
         ![Tela com formulário de criação](./img/vm-image10.png)
+
     * **Adicionar chaves SSH:** Selecione **Colar chave pública** e cole o conteúdo da sua chave pública (`~/.ssh/zabbix_key.pub`);
+
     ![Tela com formulário de criação](./img/vm-image11.png)
+
     * **Armazenamento:** Para o projeto não há necessidade de alterar o armazenamento da VM o padrão `50` GB será suficiente;
+
     ![Tela com formulário de criação](./img/vm-image12.png)
+
     * Clique em **Próximo** e depois em **Criar**;
     * Aguarde a instância ficar com o status "Executando" e anote o **Endereço de IP público**.
 
@@ -113,29 +165,37 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
     Abra as portas necessárias para a comunicação.
 
     * Navegue até os detalhes da sua instância e clique em **Rede**, depois em **Sub-rede** clique no nome da sua sub-rede (`zabbix-vcn-subnet`);
+
     ![Tela com formulário de alteração](./img/fw-image1.png)
     ![Tela com formulário de alteração](./img/fw-image2.png)
+
     * Clique em **Segurança**;
+
     ![Tela com formulário de alteração](./img/fw-image3.png)
 
     * Clique na **Default Security List** e depois em **Regras de segurança**;
+
     ![Tela com formulário de alteração](./img/fw-image4.png)
     ![Tela com formulário de alteração](./img/fw-image5.png)
+
     * Clique em **Adicionar regras de segurança** e adicione as seguintes regras de entrada:
+
     ![botão de adição de regra](./img/fw-image6.png)
-        * **Regra para SSH (Porta 22):**
-            * **CIDR de origem:** `0.0.0.0/0`
-            * **Protocolo IP:** `TCP`
-            * **Intervalo de portas de destino:** `22`
-        * **Regra para Zabbix Agent (Porta 10050):**
-            * **CIDR de origem:** `0.0.0.0/0` (ou o IP do seu Zabbix Server para mais segurança)
-            * **Protocolo IP:** `TCP`
-            * **Intervalo de portas de destino:** `10050`
-        * **Regras para Zabbix Web (Portas 8080/8443):**
-            * **CIDR de origem:** `0.0.0.0/0`
-            * **Protocolo IP:** `TCP`
-            * **Intervalo de portas de destino:** `8080` (HTTP) e/ou `8443` (HTTPS)
-            ![Tela de exemplo de regra](./img/fw-image7.png)
+
+    * **Regra para SSH (Porta 22):**
+        * **CIDR de origem:** `0.0.0.0/0`
+        * **Protocolo IP:** `TCP`
+        * **Intervalo de portas de destino:** `22`
+    * **Regra para Zabbix Agent (Porta 10050):**
+        * **CIDR de origem:** `0.0.0.0/0` (ou o IP do seu Zabbix Server para mais segurança)
+        * **Protocolo IP:** `TCP`
+        * **Intervalo de portas de destino:** `10050`
+    * **Regras para Zabbix Web (Portas 8080/8443):**
+        * **CIDR de origem:** `0.0.0.0/0`
+        * **Protocolo IP:** `TCP`
+        * **Intervalo de portas de destino:** `8080` (HTTP) e/ou `8443` (HTTPS)
+
+        ![Tela de exemplo de regra](./img/fw-image7.png)
 
     #### 2.5. Conectar-se à VM via SSH
 
@@ -154,7 +214,9 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
     #### 3.1. Instalar o Zabbix Agent
 
     * Acesse sua VM via SSH;
+
     ![acesso ssh](./img/ssh-image1.png)
+
     * Baixe e instale o pacote de repositório do Zabbix. Ajuste a URL para a versão compatível com seu Zabbix Server;
         ```bash
         wget https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.2+ubuntu24.04_all.deb
@@ -171,6 +233,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
         sudo systemctl status zabbix-agent
         ```
         ![exemplo de status](./img/status-zabbix-agent.png)
+
     #### 3.2. Configurar o Zabbix Agent
 
     * Edite o arquivo de configuração:
@@ -207,6 +270,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
         ```bash
         sudo iptables -L -n
         ```
+
         ![exemplo de tabela de regras](./img/fw-image8.png)
     
     * Instale o `netfilter-persistent` para salvar a regra após reinicializações:
@@ -222,6 +286,7 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
     * Certifique-se de que ambos estejam devidamente instalados no seu sistema operacional.
 
         ![status da instalação do docker e docker compose](./img/docker-status.png)
+
 ---
 
 ## Iniciando o projeto (com Docker)
@@ -284,17 +349,6 @@ No diretório do projeto, utilize os seguintes comandos:
 
 ---
 
-### 📝 Notas do projeto
-
-* Este projeto utiliza **Zabbix com MySQL** para garantir robustez e performance;
-* A estrutura dos serviços está definida no arquivo `docker-compose.yml`;
-* É utilizado volumes para armazenar os dados e configurações do Zabbix;
-* O arquivo `zabbix-mysql.cnf` contém otimizações para o MySQL;
-* O arquivo `data/hosts.yaml` contém exemplos para monitorar Google, CloudFlare e GitHub;
-* Estamos utilizando uma VM Ubuntu na Oracle Cloud Infrastructure (OCI) para simular um ambiente real.
-
----
-
 ### 📊 Configuração inicial de monitoramento
 
 Para um início rápido, importe os hosts de exemplo e crie um dashboard.
@@ -305,30 +359,38 @@ Para um início rápido, importe os hosts de exemplo e crie um dashboard.
 
 * **Para importar:**
 1.  No menu do Zabbix, vá para **Coleção de dados > Servidores**;
-        ![Menu Data Collection](./img/host-image1.png)
+
+    ![Menu Data Collection](./img/host-image1.png)
 
 2.  Clique no botão **Importar** no canto superior direito;
-        ![Menu Data Collection](./img/host-image2.png)
+
+    ![Menu Data Collection](./img/host-image2.png)
 
 3.  Clique em procurar e seleccione o arquivo `data/exemplo-hosts.yaml`;
 
 4.  Clique em **Importar**.
-        ![Menu Data Collection](./img/host-image3.png)
+
+    ![Menu Data Collection](./img/host-image3.png)
 
 #### 2 Criar um host no Zabbix frontend
 **Obs:** No exemplo criaremos um host para monitorar uma vm Unbuntu no oracle cloud.
 
 * Acesse sua interface web do Zabbix;
 * Vá para **Coleção de dados > Servidores** e clique em **Criar host**;
+
     ![botão de criação](./img/zbx-image1.png)
     ![botão de criação](./img/zbx-image2.png)
+
 * Preencha os campos:
     * **Nome do host:** Digite o nome **exato** configurado no `zabbix_agentd.conf`.
     * **Grupos de hosts:** Associe a um grupo (ex: `Linux servers`).
     * **Interfaces:** Adicione uma interface do tipo **Zabbix agent**, preenchendo o **IP address** público da VM e a porta `10050`.
 * Na aba **Templates**, vincule um modelo apropriado, como `Linux by Zabbix agent`.
+
 ![botão de criação](./img/zbx-image3.png)
+
 * Clique em **Adicionar** para salvar.
+
 ![botão de criação](./img/zbx-image4.png)
 
 #### 2.1. Verificar a Coleta de Dados
@@ -336,7 +398,9 @@ Para um início rápido, importe os hosts de exemplo e crie um dashboard.
 * Aguarde alguns minutos;
 * Vá para **Monitoração > Dados recentes**;
 * Filtre pelo host recém-criado para ver os dados sendo coletados. O ícone de disponibilidade do host em **Monitoração > Servidores** deve ficar verde.
+
 ![botão de criação](./img/zbx-image5.png)
+
 ---
 
 #### 3. Criar um dashboard básico
@@ -344,14 +408,19 @@ Para um início rápido, importe os hosts de exemplo e crie um dashboard.
 1.  No menu, clique em **Painéis**;
     
 2.  Clique em **Criar novo**;
+
     ![Menu Dashboards](./img/dash-image1.png)
+
 3.  Dê um nome ao dashboard e clique em **Aplicar**;
+
     ![Criação do Dashboard](./img/dash-image2.png)
+
 4.  Clique em uma área vazia para adicionar um widget (ex: um `Gráfico`) para visualizar os dados dos seus hosts;
 5.  Clique em **Adicionar** e preencha:
-    * **Nome:** Nome do widget
-    * **Host patterns:** Hosts a serem monitorados
-    * **Items patterns:** Items a serem monitorados
-    * **Aspectos do grafico:** Opções de estilo do gráfico (cor, largura, tipo, posição, etc.)
+    * **Nome:** Nome do widget;
+    * **Host patterns:** Hosts a serem monitorados;
+    * **Items patterns:** Items a serem monitorados;
+    * **Aspectos do grafico:** Opções de estilo do gráfico (cor, largura, tipo, posição, etc.).
+
     ![Criação do Dashboard](./img/dash-image3.png)
     ![Criação do Dashboard](./img/dash-image4.png)
