@@ -4,7 +4,7 @@
 
 ## Resumo do projeto
 
-Este projeto demonstra um ambiente de monitoramento robusto utilizando Zabbix, MySQL e Docker. O objetivo principal é fornecer uma solução escalável, fácil de implantar e gerenciar, para o monitoramento de infraestruturas, permitindo a coleta e análise de dados em tempo real.  
+Este projeto demonstra um ambiente de monitoramento robusto utilizando Zabbix e Docker. O objetivo principal é fornecer uma solução escalável para monitoramento de infraestrutura, fácil de implantar e gerenciar, permitindo a coleta e análise de dados em tempo real.  
 O projeto oferece uma base sólida para aprendizado e experimentação com o Zabbix.
 
 ---
@@ -33,7 +33,7 @@ Se você deseja configurar o ambiente localmente para fins de aprendizado ou tes
 
 **Pré-requisitos:**
 
-*   Docker instalado e em execução.
+*   Docker instalado e em execução;
 *   Conhecimento básico de linha de comando.
 
 ## Implantação na Oracle cloud (Branch `oracle-cloud`)
@@ -49,8 +49,8 @@ Se você pretende implantar o ambiente em um ambiente de nuvem, siga estas etapa
 
 **Pré-requisitos:**
 
-*   Conta Oracle Cloud Infrastructure (OCI) ativa com acesso à criação de recursos.
-*   Conhecimento básico de rede e segurança na OCI.
+*   Conta Oracle Cloud Infrastructure (OCI) ativa com acesso à criação de recursos;
+*   Conhecimento básico de rede e segurança na OCI;
 *   VM Linux na OCI com Docker e Docker composeinstalado e em execução.
 
 ---
