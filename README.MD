@@ -38,7 +38,7 @@ Para colocar seu monitoramento em funcionamento, siga estas etapas:
     cd zabbix-monitoramento
     ```
 
-2.  **Crie e configure o arquivo `.env`:** Este arquivo, localizado no diretório raiz do projeto (o mesmo para onde você navegou no passo anterior, `zabbix-monitoramento`), abrigará suas **variáveis de ambiente sensíveis**. **É crucial que esse arquivo seja criado antes de iniciar os contêineres;**
+2.  **Crie e configure o arquivo `.env`:** Este arquivo, localizado no diretório raiz do projeto (o mesmo para onde você navegou no passo anterior, `zabbix-monitoramento`), abrigará suas **variáveis de ambiente sensíveis**.  **É crucial que esse arquivo seja criado antes de iniciar os contêineres;**
 
     Crie um arquivo chamado `.env` e adicione as seguintes variáveis, substituindo os valores entre parênteses pelos seus próprios:
     ```
