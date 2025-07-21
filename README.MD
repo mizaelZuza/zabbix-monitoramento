@@ -298,13 +298,19 @@ Para colocar o projeto em funcionamento, siga estas etapas de configuração:
 
 ## Iniciando o projeto (com Docker)
 
-1.  **Clone o repositório:**
+1.  **Clone o repositório:** (Caso ainda não tenha feito):
     ```bash
-    git clone [https://github.com/mizaelZuza/zabbix-monitoramento.git](https://github.com/mizaelZuza/zabbix-monitoramento.git)
-    cd zabbix-monitoramento
+    git clone https://github.com/mizaelZuza/zabbix-monitoramento.git -b oracle-cloud
+    ```
+    1.1. **Caso já tenha feito o clone:** Execute o comando abaixo para entrar no diretório do repositório:
+
+    ```bash
+        cd zabbix-monitoramento
     ```
 
-2.  **Crie e configure o arquivo `.env`:** Este arquivo guarda suas variáveis de ambiente. Crie-o na raiz do projeto.
+2.  **Crie e configure o arquivo `.env`:** Este arquivo, localizado no diretório raiz do projeto, guarda suas variáveis de ambiente sensíveis. É crucial que esse arquivo seja criado antes de iniciar os contêineres. 
+Crie um arquivo `.env` e adicione as seguintes variáveis, substituindo os valores entre parênteses pelos seus próprios:
+
     ```
     MYSQL_DATABASE=(nome do database)
     MYSQL_USER=(nome do usuário)
