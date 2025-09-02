@@ -317,8 +317,8 @@ Crie um arquivo `.env` e adicione as seguintes variáveis, substituindo os valor
     MYSQL_PASSWORD=(senha do usuario do banco)
     MYSQL_ROOT_PASSWORD=(senha root do banco)
     ZABBIX_SERVER_PORT=10051
-    ZABBIX_WEB_HTTP_PORT=8080
-    ZABBIX_WEB_HTTPS_PORT=8443
+    ZABBIX_HTTP_PORT=8080
+    ZABBIX_HTTPS_PORT=8443
     ```
     **Obs:** Caso queira utilizar outras portas, altere o arquivo `.env` inserindo as portas desejadas.
     
