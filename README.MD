@@ -57,9 +57,9 @@ Para colocar seu monitoramento em funcionamento, siga estas etapas:
     docker compose up -d
     ```
 
-4.  **Acesse o Zabbix:** Uma vez que os contêineres estejam em execução, você pode acessar a interface web do Zabbix utilizando a porta que você definiu em `ZABBIX_WEB_HTTP_PORT` (por padrão, `8080`) ou `ZABBIX_WEB_HTTPS_PORT` (se configurado, por padrão `8443`):
-    * **HTTP:** `http://localhost:${ZABBIX_WEB_HTTP_PORT}` (ex: `http://localhost:8080`)
-    * **HTTPS:** `https://localhost:${ZABBIX_WEB_HTTPS_PORT}` (ex: `https://localhost:8443`)
+4.  **Acesse o Zabbix:** Uma vez que os contêineres estejam em execução, você pode acessar a interface web do Zabbix utilizando a porta que você definiu em `ZABBIX_HTTP_PORT` (por padrão, `8080`) ou `ZABBIX_HTTPS_PORT` (se configurado, por padrão `8443`):
+    * **HTTP:** `http://localhost:${ZABBIX_HTTP_PORT}` (ex: `http://localhost:8080`)
+    * **HTTPS:** `https://localhost:${ZABBIX_HTTPS_PORT}` (ex: `https://localhost:8443`)
 
 5.  **Faça login:** Utilize as credenciais padrão para seu primeiro acesso:
     * **Usuário:** `Admin`
